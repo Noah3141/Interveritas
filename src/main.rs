@@ -44,7 +44,7 @@ fn main() {
     let the_other_num: i32 = match some_other_num {
         // Using match on an Option<T> to unpack its possible states
         None => panic!("Uh oh! some_other_num didn't have something in it."), // If nothing is in it, throw me an error!
-        Some(num) => some_other_num.unwrap(), // If set to Some, and holding a variable, call it 'num' and return me it!
+        Some(_num) => some_other_num.unwrap(), // If set to Some, and holding a variable, call it 'num' and return me it!
     };
 
     let five_plus_other_unsure_variable: i32 = 5 + the_other_num;
@@ -53,7 +53,7 @@ fn main() {
     assert_eq!(10, five_plus_other_unsure_variable);
 }
 
-fn break_down_reference_list(raw_list: String) {
+fn break_down_reference_list(_raw_list: String) {
 
     todo!();
     // Input a copy and pasted listed of references from an article similar to yours, and get

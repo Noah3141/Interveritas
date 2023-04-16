@@ -32,7 +32,7 @@ pub enum LocationSpecs {
 impl Citation {
 
 
-    pub fn build(mut self) -> String {
+    pub fn build(self) -> String {
         let mut citation = String::new();
         let mut parts = vec![
             self.authors,
