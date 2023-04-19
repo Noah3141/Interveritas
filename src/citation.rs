@@ -1,4 +1,8 @@
 
+// When done testing, build Citation as structs within an Enum{struct BookCit, struct ReviewCit, struct ExpCit}
+// Because a book citation needs different fields in the first place, and the build impl will need to look different for each
+
+
 #[derive(Debug)]
 pub struct Citation {
     pub source_type: CitSourceType,
