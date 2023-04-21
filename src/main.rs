@@ -2,6 +2,7 @@
 #[macro_use]
 extern crate rocket;
 
+use models::citation_list::CitationList;
 use rocket::{get, http::Status, serde::json::Json};
 // use rocket::tokio::time::{sleep, Duration}; // sleep(Duration::from_secs(delay)).await;
 
@@ -14,6 +15,7 @@ mod repository;
 /* Routes */
 #[get("/", rank = 2)]
 async fn greet_me() -> Result<Json<String>, Status> {
+    
     
     Ok(Json(String::from("Hello, mongoDB!")))
 

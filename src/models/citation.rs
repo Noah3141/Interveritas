@@ -100,52 +100,6 @@ pub struct Citation {
     pub article_analysis: Option<Analysis>,
 }
 
-/* Citation List */
-#[derive(Deserialize, Serialize)]
-pub struct CitationList {
-    list: Vec<String>,
-    disciplines: Vec<String>,
-    average_year: u16,
-    top_journals: Vec<String>, // We want this to be sorted
-    top_authors: Vec<String>, // We want this to be sorted
-    article_id: Option<u32>, // FOREIGN KEY of article which CONTAINS this list
-    id: u32 // PRIMARY KEY
-}
-
-/* Author */
-#[derive(Deserialize, Serialize)]
-pub struct Author {
-    pub name: String,
-    pub abbrief: String,
-    pub articles: Vec<Citation>, // Contains FOREIGN KEYS
-    pub disciplines: Vec<String>, 
-    pub study_dist: Vec<[f8; mem::variant_count::<Paradigm>()]>, // Ensures this is a vector of the same length as the number of variants in Paradigm
-    pub id: u32,
-}
-
-/* Journal */
-#[derive(Deserialize, Serialize)]
-pub struct Journal {
-    list: Vec<String>,
-    average_year: u16, // todo: Add cooler metrics for Journals, that better detect spurts in popularity/productivity (this won't store ALL articles, just article in the database, which is a proxy for relevance)
-    external_cites: u32, // Metric which measures how much, how frequently, the journal's articles cite articles in other journals
-    top_authors: Vec<String>,
-    disciplines: Vec<String>,
-    interdiscipline: u32, // Metric of how much articles in this journal have lists of mixed disciplines
-    id: u32 // PRIMARY KEY
-// todo: Calculation of interdiscipline: by the article, aggregate across articles
-} 
-
-
-#[derive(Deserialize, Serialize)]
-pub struct Topic {
-    disciplines: Vec<String>,
-    articles: Vec<Citation>,
-    id: u32,
-}
-
-
-
 /* 
     While the other fields of the Citation struct are intended to abstract UP
     the information of the article, this field holds a struct that will analyze DOWN
@@ -153,16 +107,14 @@ pub struct Topic {
     organization of research. 
 */
 pub struct Analysis { 
-    critiques: String,
-    paradigm_analysis: Paradigm_Analysis
-
-
+    pub critiques: String,
+    pub paradigm_analysis: Paradigm_Analysis
 }
 
 pub struct Paradigm_Analysis {
-    paradigm_type: String,
-    paradigm_subtype: String,
-    logical_thread: String,
-    hypothetico_deductivity: String,
-    counterfactual_verification: String,
+    pub paradigm_type: String,
+    pub paradigm_subtype: String,
+    pub logical_thread: String,
+    pub hypothetico_deductivity: String,
+    pub counterfactual_verification: String,
 }
