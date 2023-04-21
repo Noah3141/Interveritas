@@ -4,7 +4,6 @@ use{
 };
 
 use crate::models::citation::Citation;
-use crate::models::citation::Paradigm;
 
 #[derive(Deserialize, Serialize)]
 pub struct Author {
@@ -13,5 +12,5 @@ pub struct Author {
     pub articles: Vec<Citation>, // Contains FOREIGN KEYS
     pub disciplines: Vec<String>, 
     pub study_dist: Vec<[f32; 6]>, // Ensures this is a vector of the same length as the number of variants in Paradigm
-    pub id: u32,
+    pub id: Option<u32>,
 }

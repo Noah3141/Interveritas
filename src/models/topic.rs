@@ -9,5 +9,5 @@ use crate::models::citation::Citation;
 pub struct Topic {
     pub disciplines: Vec<String>,
     pub articles: Vec<Citation>,
-    pub id: u32,
+    pub id: Option<u32>,
 }

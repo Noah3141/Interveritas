@@ -10,6 +10,6 @@ pub struct Journal {
     pub top_authors: Vec<String>,
     pub disciplines: Vec<String>,
     pub interdiscipline: u32, // Metric of how much articles in this journal have lists of mixed disciplines
-    pub id: u32 // PRIMARY KEY
+    pub id: Option<u32> // PRIMARY KEY
 // todo: Calculation of interdiscipline: by the article, aggregate across articles
 } 

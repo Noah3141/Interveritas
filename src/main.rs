@@ -2,7 +2,6 @@
 #[macro_use]
 extern crate rocket;
 
-use models::citation_list::CitationList;
 use rocket::{get, http::Status, serde::json::Json};
 // use rocket::tokio::time::{sleep, Duration}; // sleep(Duration::from_secs(delay)).await;
 
@@ -11,20 +10,19 @@ mod api;
 mod models;
 mod repository;
 
-
 /* Routes */
-#[get("/", rank = 2)]
-async fn greet_me() -> Result<Json<String>, Status> {
+use api::citation_api::{add_citation, get_citation_example};
+use repository::mongodb_repo::MongoRepo;
+
+#[rocket::main] // Also can use  #[rocket::main] and add {let _rocket = ... .launch().await?;    Ok(()) }
+async fn main() -> Result<(), rocket::Error> {
     
-    
-    Ok(Json(String::from("Hello, mongoDB!")))
-
-}
-
-
-/* App */
-#[launch] // Also can use  #[rocket::main] and add {let _rocket = ... .launch().await?;    Ok(()) }
-fn rocket() -> _ {
-    rocket::build()
-        .mount("/", routes![greet_me]) // Route handles are best named "Why" the person it requesting the URL
+    let db = MongoRepo::init().await;
+    let _rocket = 
+        rocket::build()
+        .manage(db)
+        .mount("/", routes![add_citation, get_citation_example]) // Route handles are best named "Why" the person it requesting the URL
+        .launch()
+        .await?;
+    Ok(())
 }

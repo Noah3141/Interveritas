@@ -10,5 +10,5 @@ pub struct CitationList {
     pub top_journals: Vec<String>, // We want this to be sorted
     pub top_authors: Vec<String>, // We want this to be sorted
     pub article_id: Option<u32>, // FOREIGN KEY of article which CONTAINS this list
-    pub id: u32 // PRIMARY KEY
+    pub id: Option<u32> // PRIMARY KEY
 }
