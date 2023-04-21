@@ -14,6 +14,7 @@ pub struct Article {
     pub pages: String,
     pub identifier: Identifer,
 }
+
 #[derive(Deserialize, Serialize)]
 pub enum Identifer {
     Doi(String),
@@ -106,12 +107,13 @@ pub struct Citation {
     into the article, so that the API is able to scale the hierarchy to provide genuine
     organization of research. 
 */
+#[derive(Deserialize, Serialize)]
 pub struct Analysis { 
     pub critiques: String,
-    pub paradigm_analysis: Paradigm_Analysis
+    pub paradigm_analysis: ParadigmAnalysis
 }
-
-pub struct Paradigm_Analysis {
+#[derive(Deserialize, Serialize)]
+pub struct ParadigmAnalysis {
     pub paradigm_type: String,
     pub paradigm_subtype: String,
     pub logical_thread: String,

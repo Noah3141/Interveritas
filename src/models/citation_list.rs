@@ -1,4 +1,7 @@
 /* Citation List */
+use{
+    serde::{Deserialize, Serialize},
+};
 #[derive(Deserialize, Serialize)]
 pub struct CitationList {
     pub list: Vec<String>,

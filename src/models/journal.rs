@@ -1,4 +1,7 @@
 /* Journal */
+use{
+    serde::{Deserialize, Serialize},
+};
 #[derive(Deserialize, Serialize)]
 pub struct Journal {
     pub list: Vec<String>,
