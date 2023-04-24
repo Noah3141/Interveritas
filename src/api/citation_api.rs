@@ -4,13 +4,11 @@ use rocket::{http::Status, serde::json::Json, State};
 use crate::models::citation::Identifier;
 use crate::models::citation::Paradigm;
 
+
 #[post("/citation", format = "application/json", data = "<new_citation>")]
 pub async fn add_citation(db: &State<MongoRepo>, new_citation: Json<Citation>) -> Result<Json<InsertOneResult>, Status> {
 
-    let data:Citation = Citation{
-        ..new_citation.into_inner()
-    };
-    let citation_detail = db.create_citation(data).await;
+    let citation_detail = db.create_citation(new_citation.into_inner()).await;
     match citation_detail {
         Ok(citation) => Ok(Json(citation)), // Wrap the InsertOne result in JSON and return it to the post requester as a token of success
         Err(_) => Err(Status::InternalServerError), // If you got an error from Mongo trying to insert, throw away Error inside Err, and return a 500 status code

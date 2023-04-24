@@ -2,26 +2,34 @@
 #[macro_use]
 extern crate rocket;
 
+use api::citation_list_api::google_me_list;
 use rocket::{get, http::Status, serde::json::Json};
 // use rocket::tokio::time::{sleep, Duration}; // sleep(Duration::from_secs(delay)).await;
 
-/* Importing local modules */ 
 mod api;
 mod models;
 mod repository;
+mod utils;
 
-/* Routes */
-use api::citation_api::{add_citation, get_citation_example};
+use api::citation_api::*;
+use api::citation_list_api::*;
 use repository::mongodb_repo::MongoRepo;
 
-#[rocket::main] // Also can use  #[rocket::main] and add {let _rocket = ... .launch().await?;    Ok(()) }
+
+
+#[rocket::main]
 async fn main() -> Result<(), rocket::Error> {
     
     let db = MongoRepo::init().await;
     let _rocket = 
         rocket::build()
         .manage(db)
-        .mount("/", routes![add_citation, get_citation_example]) // Route handles are best named "Why" the person it requesting the URL
+        .mount("/", routes![
+            add_citation,
+            get_citation_example, 
+            google_me_list, 
+            parse_me_list
+            ]) // Route handles are best named "Why" the person it requesting the URL
         .launch()
         .await?;
     Ok(())

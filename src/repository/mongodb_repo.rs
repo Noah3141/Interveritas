@@ -34,24 +34,10 @@ impl MongoRepo {
 
 
     pub async fn create_citation(&self, new_citation: Citation) -> Result<InsertOneResult, Error> {
-        let new_doc = Citation {
-            source_type: new_citation.source_type,
-            summary: new_citation.summary, 
-            conclusions: new_citation.conclusions,
-            limitations: new_citation.limitations, 
-            paradigm: new_citation.paradigm,  
-            methods: new_citation.methods, 
-            hypotheses: new_citation.hypotheses,
-            funding: new_citation.funding,
-            interest_disclosure: new_citation.interest_disclosure,
-            keywords: new_citation.keywords,
-            disciplines: new_citation.disciplines,
-            article_cites: new_citation.article_cites, 
-            article_cited: new_citation.article_cited,  
-            journal_id: new_citation.journal_id,
-            article_analysis: new_citation.article_analysis,
-            id: None,
-            };
+            let new_doc = Citation {
+                id: None,
+                ..new_citation
+                };
 
             let citation = self
                 .col
@@ -60,6 +46,5 @@ impl MongoRepo {
                 .ok()
                 .expect("Error creating citation!");
             Ok(citation)
-            
         }
 }
