@@ -19,7 +19,7 @@ impl CitationList {
     pub fn new_blank() -> Self {
 
         CitationList { 
-            list: vec![ Citation::new_blank(), Citation::new_blank() , Citation::new_blank(),], 
+            list: vec![ Citation::new_blank(),], 
             disciplines: None, 
             average_year: None, 
             top_journals: None, 

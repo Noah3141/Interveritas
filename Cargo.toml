@@ -10,6 +10,7 @@ rocket = { version = "0.5.0-rc.3", features = ["json"]}
 serde = { version = "1.0", features = ["derive"] }
 dotenv = "0.15.0"
 tokio = { version = "1.27.0", features = ["full"]} 
+regex = "1.8.0"
 
 [dependencies.mongodb]
 version = "2.5.0"

@@ -92,7 +92,7 @@ pub struct Citation {
     pub hypotheses: Option<String>,
     pub funding: Option<u64>,
     pub interest_disclosure: Option<String>,
-    pub keywords: Option<Vec<String>>,
+    pub keywords: Option<Vec<String>>, // todo: Use keywords to generate connections between articles 
     pub disciplines: Option<Vec<String>>,
     pub article_cites: Option<Vec<u32>>, // Vector of primary keys of articles that this article cites
     pub article_cited: Option<Vec<u32>>, // Vector of primary keys of artciles that cite this article
